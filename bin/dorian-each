@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'dorian/each'
+Dorian::Each.run
