@@ -21,8 +21,8 @@ gem install dorian
 From my history:
 
 ```bash
-pbpaste | ruby-each-line "puts line.split('-')[1].split.first" | uniq
-git grep Thing test/ | grep isocode | ruby-each-line "puts l.split(':').first" | sort | uniq | xvim
-cat file.csv | ruby-each-line "code, name = l.split(\"\\t\"); if code.include?(','); puts code; else; puts code.gsub(' ', '') + ',' + name; end"
-git grep thing | grep " doc " | ruby-each-line "puts l.split(':').first" | xvim
+pbpaste | dorian-each "puts line.split('-')[1].split.first" | uniq
+git grep Thing test/ | grep isocode | dorian-each "puts l.split(':').first" | sort | uniq | xvim
+cat file.csv | dorian-each "code, name = l.split(\"\\t\"); if code.include?(','); puts code; else; puts code.gsub(' ', '') + ',' + name; end"
+git grep thing | grep " doc " | dorian-each "puts l.split(':').first" | xvim
 ```
