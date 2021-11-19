@@ -2,7 +2,7 @@ module Dorian
   class Each
     def self.run
       if ARGV.size != 1
-        puts 'USAGE: each CODE'
+        puts "USAGE: each CODE"
         exit
       end
 
