@@ -1,8 +1,8 @@
 module Dorian
   class Each
     def self.run
-      if ARGV.size != 1
-        puts "USAGE: each CODE"
+      if ARGV.size != 1 || ARGV[0] == "--help" || ARGV[0] == "-h"
+        puts "USAGE: ... | each CODE"
         exit
       end
 
