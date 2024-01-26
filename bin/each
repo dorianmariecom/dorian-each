@@ -1,4 +1,11 @@
 #!/usr/bin/env ruby
 
-require 'dorian/each'
-Dorian::Each.run
+if ARGV.size != 1 || ARGV[0] == "--help" || ARGV[0] == "-h"
+  puts "USAGE: ... | each CODE"
+  exit
+end
+
+STDIN.each_line do |it|
+  it.strip!
+  eval(ARGV.first)
+end
