@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 if ARGV.size != 1 || ARGV[0] == "--help" || ARGV[0] == "-h"
   puts "USAGE: ... | each CODE"
   exit
 end
 
-STDIN.each_line do |it|
+$stdin.each_line do |it|
   it.strip!
   eval(ARGV.first)
 end
