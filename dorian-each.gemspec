@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.summary = "Evaluates some code on each line of the input"
   s.description = "#{s.summary}\n\ne.g. `ls -l | each \"puts it.split.first\"`"
   s.authors = ["Dorian Marié"]
-  s.email = "dorian@dorianmarie.fr"
+  s.email = "dorian@dorianmarie.com"
   s.files = ["bin/each"]
   s.executables << "each"
   s.homepage = "https://github.com/dorianmariecom/each"
