@@ -8,3 +8,4 @@ ruby "3.3.0"
 
 gem "dorian-times"
 gem "rspec"
+gem "rubocop-rails-omakase"
