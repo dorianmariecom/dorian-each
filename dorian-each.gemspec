@@ -3,8 +3,8 @@
 Gem::Specification.new do |s|
   s.name = "dorian-each"
   s.version = "0.4.1"
-  s.summary = "Evaluates some code on each line of the input"
-  s.description = "#{s.summary}\n\ne.g. `ls -l | each \"puts it.split.first\"`"
+  s.summary = "evaluates some code on each line of the input"
+  s.description = s.summary
   s.authors = ["Dorian Marié"]
   s.email = "dorian@dorianmarie.com"
   s.files = ["bin/each"]
