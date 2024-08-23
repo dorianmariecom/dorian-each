@@ -3,15 +3,7 @@
 
 require "dorian/arguments"
 
-parsed =
-  Dorian::Arguments.parse(
-    version: {
-      alias: :v
-    },
-    help: {
-      alias: :h
-    }
-  )
+parsed = Dorian::Arguments.parse(version: { alias: :v }, help: { alias: :h })
 
 abort parsed.help if parsed.options.help
 
@@ -21,6 +13,4 @@ end
 
 input = parsed.files.map { |file| File.read(file) }.join("\n")
 input = $stdin.each_line.to_a.map(&:strip).join("\n") if input.empty?
-input.lines.map(&:strip).each do |it|
-  eval(parsed.arguments.join(" "))
-end
+input.lines.map(&:strip).each { |it| eval(parsed.arguments.join(" ")) }
