@@ -19,7 +19,8 @@ if parsed.options.version
   abort File.read(File.expand_path("../../VERSION", __FILE__))
 end
 
-$stdin.each_line do |it|
-  it.strip!
-  eval(ARGV.first)
+input = parsed.files.map { |file| File.read(file) }.join("\n")
+input = $stdin.each_line.to_a.map(&:strip).join("\n") if input.empty?
+input.lines.map(&:strip).each do |it|
+  eval(parsed.arguments.join(" "))
 end
