@@ -2,8 +2,44 @@
 # frozen_string_literal: true
 
 require "dorian/arguments"
+require "dorian/eval"
+require "dorian/progress"
 
-parsed = Dorian::Arguments.parse(version: { alias: :v }, help: { alias: :h })
+parsed =
+  Dorian::Arguments.parse(
+    debug: {
+      alias: :d
+    },
+    stdout: {
+      aliases: %i[out o],
+      default: true
+    },
+    stderr: {
+      aliases: %i[err e],
+      default: true
+    },
+    colorize: {
+      aliases: %i[color c],
+      default: true
+    },
+    progress: {
+      alias: :p
+    },
+    progress_format: {
+      type: :string,
+      alias: :pf,
+      default: "full"
+    },
+    rails: {
+      alias: :r
+    },
+    version: {
+      alias: :v
+    },
+    help: {
+      alias: :h
+    }
+  )
 
 abort parsed.help if parsed.options.help
 
@@ -13,4 +49,22 @@ end
 
 input = parsed.files.map { |file| File.read(file) }.join("\n")
 input = $stdin.each_line.to_a.map(&:strip).join("\n") if input.empty?
-input.lines.map(&:strip).each { |it| eval(parsed.arguments.join(" ")) }
+inputs = input.lines.map(&:strip)
+ruby = parsed.arguments.join(" ")
+debug = parsed.options.debug
+stdout = parsed.options.stdout && !parsed.options.progress
+stderr = parsed.options.stderr && !parsed.options.progress
+colorize = parsed.options.colorize
+total = inputs.size
+format = parsed.options.progress_format
+
+if parsed.options.progress
+  progress = Dorian::Progress.create(total:, format:)
+else
+  progress = nil
+end
+
+inputs.each do |it|
+  Dorian::Eval.eval(it:, ruby:, debug:, stdout:, stderr:, colorize:)
+  progress&.increment
+end

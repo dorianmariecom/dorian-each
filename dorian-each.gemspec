@@ -13,4 +13,6 @@ Gem::Specification.new do |s|
   s.license = "MIT"
   s.metadata = { "rubygems_mfa_required" => "true" }
   s.add_dependency "dorian-arguments"
+  s.add_dependency "dorian-eval"
+  s.add_dependency "dorian-progress"
 end
