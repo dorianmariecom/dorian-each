@@ -52,17 +52,13 @@ input = $stdin.each_line.to_a.map(&:strip).join("\n") if input.empty?
 inputs = input.lines.map(&:strip)
 ruby = parsed.arguments.join(" ")
 debug = parsed.options.debug
-stdout = parsed.options.stdout && !parsed.options.progress
-stderr = parsed.options.stderr && !parsed.options.progress
+progress = parsed.options.progress
+stdout = parsed.options.stdout
+stderr = parsed.options.stderr
 colorize = parsed.options.colorize
 total = inputs.size
 format = parsed.options.progress_format
-
-if parsed.options.progress
-  progress = Dorian::Progress.create(total:, format:)
-else
-  progress = nil
-end
+progress = progress ? Dorian::Progress.create(total:, format:) : nil
 
 inputs.each do |it|
   Dorian::Eval.eval(it:, ruby:, debug:, stdout:, stderr:, colorize:)
