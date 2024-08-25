@@ -59,8 +59,9 @@ colorize = parsed.options.colorize
 total = inputs.size
 format = parsed.options.progress_format
 progress = progress ? Dorian::Progress.create(total:, format:) : nil
+rails = parsed.options.rails
 
 inputs.each do |it|
-  Dorian::Eval.eval(it:, ruby:, debug:, stdout:, stderr:, colorize:)
+  Dorian::Eval.eval(it:, ruby:, debug:, stdout:, stderr:, colorize:, rails:)
   progress&.increment
 end
