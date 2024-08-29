@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dorian-each (1.1.1)
+    dorian-each (1.2.0)
       dorian-arguments
       dorian-eval
       dorian-progress
