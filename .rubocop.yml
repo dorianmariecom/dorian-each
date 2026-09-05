@@ -130,6 +130,8 @@ Style/EmptyMethod:
   Enabled: false
 Style/IfUnlessModifier:
   Enabled: false
+Style/ItAssignment:
+  Enabled: false
 Style/Lambda:
   Enabled: false
 Style/MultilineBlockChain:
@@ -143,7 +145,6 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Enabled: false
 plugins:
-- rubocop-factory_bot
 - rubocop-performance
 - rubocop-rails
 - rubocop-rake
